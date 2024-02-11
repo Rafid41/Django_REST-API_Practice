@@ -10,6 +10,16 @@ from .serializers import StatusSerializer
 
 class StatusViewer(APIView):
     # jodi kew get request dey
+    def get(self, request, **kwargs):
+        id = kwargs.get('id')
+        status = Status.objects.get(pk=id)
+        serializer = StatusSerializer(status, many=False)
+        return Response(serializer.data)
+
+
+
+# all status
+class StatusListView(APIView):
     def get(self, request):
         all_status = Status.objects.all()
         serializer = StatusSerializer(all_status, many=True)

@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class StatusSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=True)  # ekta user
+    user = UserSerializer(many=False)  # ekta user
 
     class Meta:
         # kon model and kon kon field serialize korbo
