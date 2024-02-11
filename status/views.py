@@ -1,6 +1,7 @@
 # status\views.py
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from .models import Status
 from .serializers import StatusSerializer
@@ -17,10 +18,26 @@ class StatusViewer(APIView):
         return Response(serializer.data)
 
 
-
 # all status
-class StatusListView(APIView):
-    def get(self, request):
-        all_status = Status.objects.all()
-        serializer = StatusSerializer(all_status, many=True)
-        return Response(serializer.data)
+# class StatusListView(APIView):
+#     def get(self, request):
+#         all_status = Status.objects.all()
+#         serializer = StatusSerializer(all_status, many=True)
+#         return Response(serializer.data)
+
+
+# same class(above) er alternative
+# generics.ListAPIView
+class StatusListView(generics.ListAPIView):
+    # default name
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+
+
+
+# generics.createAPIViews  => only for creating new views
+class StatusCreateView(generics.CreateAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+    
+
