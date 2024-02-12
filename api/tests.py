@@ -39,9 +39,14 @@ class StatusTests(APITestCase):
         status = Status(text="sample text-3", user=new_user)
         status.save()
 
+        status2 = Status(text="sample text-4", user=new_user)
+        status2.save()
+
     def test_create_account(self):
         url = reverse("status_view")
         # get request
         response = self.client.get(url, format="json")
-        print(response)
-        self.assertEqual(response, None)
+        status_List = response.data
+        # chk length == 1 or not
+        self.assertEqual(len(status_List), 2)
+        self.assertEqual(response.status_code, 200)  # 200 means success
