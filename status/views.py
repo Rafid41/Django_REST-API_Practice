@@ -34,10 +34,28 @@ class StatusListView(generics.ListAPIView):
     serializer_class = StatusSerializer
 
 
-
 # generics.createAPIViews  => only for creating new views
 class StatusCreateView(generics.CreateAPIView):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
-    
 
+
+# detailView
+class StatusDetailView(generics.RetrieveAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+
+    # jodi pk diye search korte na chai, taile
+    # lookup_field= e bole dte hbe ki diye search korte chai
+
+
+# UpdateView
+class StatusUpdateView(generics.UpdateAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+
+
+# deleteView
+class StatusDeleteView(generics.DestroyAPIView):
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
