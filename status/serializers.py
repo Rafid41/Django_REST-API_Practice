@@ -14,4 +14,4 @@ class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         # kon model and kon kon field serialize korbo
         model = Status
-        fields = ['id', 'text', 'created_at', 'user']
+        fields = ['id', 'text', 'created_at','image_link', 'user']
